@@ -2,10 +2,9 @@ import type { InferResponseType } from "hono/client";
 import { hc } from "hono/client";
 import { useEffect, useState } from "react";
 
-import { AppType } from "../functions/api/[[route]]";
-import "./App.css";
+import { AppType } from "@/../functions/api/[[route]]";
 
-function App() {
+function Timer() {
   const client = hc<AppType>("/");
   const $get = client.api.ping.$get;
 
@@ -26,10 +25,9 @@ function App() {
 
   return (
     <>
-      <h1>Tokitsudori</h1>
       <p>data: {data?.message}</p>
     </>
   );
 }
 
-export default App;
+export default Timer;

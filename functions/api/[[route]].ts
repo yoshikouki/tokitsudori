@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { handle } from "hono/cloudflare-pages";
 
-import { dateTimeFormatter } from "../../src/formatter";
+import { dateTimeFormatter } from "../../src/lib/formatter";
 
 const app = new Hono().basePath("/api");
 
