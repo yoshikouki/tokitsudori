@@ -1,31 +1,11 @@
-import type { InferResponseType } from "hono/client";
-import { hc } from "hono/client";
-import { useEffect, useState } from "react";
-
-import { AppType } from "@/../functions/api/[[route]]";
-
 function Timer() {
-  const client = hc<AppType>("/");
-  const $get = client.api.ping.$get;
-
-  const [data, setData] = useState<InferResponseType<typeof $get>>();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await $get({
-        query: {
-          name: "Pages",
-        },
-      });
-      const responseData = await res.json();
-      setData(responseData);
-    };
-    fetchData();
-  }, []);
-
   return (
     <>
-      <p>data: {data?.message}</p>
+      <div className="font-black text-9xl">
+        24
+        <span className="mx-1 font-semibold">:</span>
+        48
+      </div>
     </>
   );
 }
