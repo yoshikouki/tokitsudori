@@ -12,5 +12,7 @@
   "typescript.tsdk": "node_modules\\typescript\\lib", // ローカル TypeScript プラグインを使用する
   "cSpell.words": [
     "tokitsudori"
-  ]
+  ],
+  "workbench.tree.indent": 20,
+  "editor.tabSize": 2
 }
