@@ -1,16 +1,13 @@
+import { dateTimeFormatter } from "@/lib/formatter";
 
 type Props = {
-    seconds: number;
+  seconds: number;
 };
 
-export const TimeDisplay = ({seconds}: Props) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
-    return (
-        <div className="font-black text-9xl">
-            {minutes}
-            <span className="mx-1 font-semibold">:</span>
-            {remainingSeconds}
-        </div>
-    );
+export const TimeDisplay = ({ seconds }: Props) => {
+  return (
+    <div className="font-black text-9xl">
+      {dateTimeFormatter.format(new Date(0, 0, 0, 0, seconds))}
+    </div>
+  );
 };
