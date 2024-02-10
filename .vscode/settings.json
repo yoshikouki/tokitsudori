@@ -14,5 +14,6 @@
     "tokitsudori"
   ],
   "workbench.tree.indent": 20,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false
 }
