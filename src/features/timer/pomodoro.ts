@@ -3,14 +3,14 @@
 // 30 ~ 55 Work time
 // 55 ~ 60 Break time
 
-const isWorkTime = () => new Date().getMinutes() % 30 < 25;
-const isBreakTime = () => !isWorkTime();
+const isWorkTime = (datetime = new Date()) => datetime.getMinutes() % 30 < 25;
+const isBreakTime = (datetime = new Date()) => !isWorkTime(datetime);
 
-const detectRemainingSeconds = (now = new Date()) => {
-  const seconds = 60 - now.getSeconds();
-  const minutes = isWorkTime()
-    ? 25 - (now.getMinutes() % 30)
-    : 5 - (now.getMinutes() % 30) - 25;
+const detectRemainingSeconds = (datetime = new Date()) => {
+  const seconds = 60 - datetime.getSeconds();
+  const minutes = isWorkTime(datetime)
+    ? 24 - (datetime.getMinutes() % 30)
+    : 4 - (datetime.getMinutes() % 5);
   const remainingSeconds = seconds + minutes * 60;
   return remainingSeconds;
 };
