@@ -13,14 +13,19 @@ export const useTimer = (props?: Props) => {
   const [remainingSeconds, setRemainingSeconds] = useState(
     pomodoro.detectRemainingSeconds()
   );
+  const [isWorkTime, setIsWorkTime] = useState(pomodoro.isWorkTime());
+  const [isBreakTime, setIsBreakTime] = useState(pomodoro.isBreakTime());
 
   useInterval(() => {
     setRemainingSeconds(pomodoro.detectRemainingSeconds());
+    setIsWorkTime(pomodoro.isWorkTime());
+    setIsBreakTime(pomodoro.isBreakTime());
   }, delay);
 
   return {
     remainingSeconds,
-    stop,
     delay,
+    isWorkTime,
+    isBreakTime,
   };
 };
