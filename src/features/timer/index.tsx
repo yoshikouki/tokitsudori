@@ -1,18 +1,11 @@
-import { useState } from "react";
-
 import { TimeDisplay } from "./time-display";
-import { useInterval } from "./use-interval";
+import { useTimer } from "./use-timer";
 
 function Timer() {
-  const [seconds, setSeconds] = useState(0);
-
-  useInterval(() => {
-    setSeconds((prev) => prev + 1);
-  }, 1000);
-
+  const { remainingSeconds } = useTimer();
   return (
     <>
-      <TimeDisplay seconds={seconds} />
+      <TimeDisplay seconds={remainingSeconds} />
     </>
   );
 }
