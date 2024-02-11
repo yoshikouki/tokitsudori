@@ -21,7 +21,7 @@ export const TimeDisplay = ({
     <div className="flex justify-center items-center h-screen">
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
         <circle
-          transform={`rotate(-90 ${size / 2} ${size / 2})`}
+          transform={`rotate(-86 ${size / 2} ${size / 2})`}
           className="stroke-foreground fill-none"
           cx={size / 2}
           cy={size / 2}
