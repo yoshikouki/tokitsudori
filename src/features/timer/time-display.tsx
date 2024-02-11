@@ -1,44 +1,47 @@
 type Props = {
   seconds: number;
+  size?: number;
+  strokeWidth?: number;
+  fontSize?: number;
 };
 
-export const TimeDisplay = ({ seconds }: Props) => {
+export const TimeDisplay = ({
+  seconds,
+  size = 200,
+  strokeWidth = 16,
+  fontSize = 60,
+}: Props) => {
   const minutes = Math.floor(seconds / 60);
-  const percentage = (seconds % 60) * (100 / 60);
+  const radius = size / 2 - strokeWidth / 2;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset =
+    circumference - ((seconds % 60) / 60) * circumference;
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <svg width="0" height="0">
-        <defs>
-          <clipPath id="clipPath">
-            <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize="120"
-              fontFamily="Arial"
-            >
-              {minutes}
-            </text>
-          </clipPath>
-        </defs>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        <circle
+          transform={`rotate(-90 ${size / 2} ${size / 2})`}
+          className="stroke-foreground fill-none"
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
+        />
+        <text
+          className="fill-primary"
+          x={size / 2}
+          y={size / 2}
+          fontSize={fontSize}
+          textAnchor="middle"
+          dominantBaseline="central"
+        >
+          {minutes}
+        </text>
       </svg>
-      <div
-        className="text-9xl font-bold"
-        style={{
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-          color: "transparent",
-          lineHeight: 0.69,
-          paddingTop: "0em",
-          paddingBottom: "0.05em",
-          backgroundImage: `linear-gradient(0deg, #007bff ${percentage}%, #f8f9fa ${percentage}%)`,
-        }}
-      >
-        {minutes}
-      </div>
     </div>
   );
 };
