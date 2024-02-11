@@ -1,3 +1,4 @@
+import { RippleAnimation } from "./ripple-animation";
 import { TimeDisplay } from "./time-display";
 import { useTimer } from "./use-timer";
 
@@ -10,6 +11,7 @@ function Timer() {
         {isBreakTime && "🍵"}
       </div>
       <TimeDisplay seconds={remainingSeconds} />
+      <RippleAnimation />
     </>
   );
 }
