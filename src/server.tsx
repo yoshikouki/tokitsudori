@@ -1,11 +1,12 @@
 import { Hono } from "hono";
+import { serveStatic } from "hono/bun";
 
 const app = new Hono();
 
-const port = parseInt(process.env.PORT!) || 5173;
-console.log(`Running at http://localhost:${port}`);
+app.use("/static/*", serveStatic({ root: "./dist/static" }));
 
 app.get("/", (c) => {
+  // return c.text("Hello, World!");
   return c.html(
     <html>
       <head>
@@ -15,16 +16,19 @@ app.get("/", (c) => {
           </>
         ) : (
           <>
-            <script type="module" src="/src/client.ts"></script>
+            <script type="module" src="/src/client.tsx"></script>
           </>
         )}
       </head>
       <body>
-        <h1>Hello</h1>
+        <div id="root"></div>
       </body>
     </html>
   );
 });
+
+const port = parseInt(process.env.PORT!) || 5173;
+console.log(`Running at http://localhost:${port}`);
 
 export default {
   port,
